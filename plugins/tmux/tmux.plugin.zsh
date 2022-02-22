@@ -107,3 +107,4 @@ if [[ -z "$TMUX" && "$ZSH_TMUX_AUTOSTART" == "true" && -z "$INSIDE_EMACS" && -z 
     _zsh_tmux_plugin_run
   fi
 fi
+

@@ -279,3 +279,16 @@ function git_repo_name() {
     echo ${repo_path:t}
   fi
 }
+
+function tmux_id() {
+    if [ "$TMUX" != "" ]
+    then
+        session_index=$(tmux display-message -p '#S')
+        window_index=$(tmux display-message -p '#I')
+        window_flag=$(tmux display-message -p '#F')
+        echo "[tmux${session_index}-${window_index}${window_flag}]"
+    else
+        return 0
+    fi
+}
+

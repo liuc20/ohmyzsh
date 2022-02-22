@@ -4,12 +4,17 @@ local user_symbol='%(!.#.$)'
 local current_dir="%B%{$fg[blue]%}%~ %{$reset_color%}"
 
 local vcs_branch='$(git_prompt_info)$(hg_prompt_info)'
+
+local tmux_info='%{$terminfo[bold]$fg[green]%}$(tmux_id) %{$reset_color%}'
+local current_dir='%{$terminfo[bold]$fg[blue]%}%~ %{$reset_color%}'
+local git_branch='$(git_prompt_info)'
+
 local rvm_ruby='$(ruby_prompt_info)'
 local venv_prompt='$(virtualenv_prompt_info)'
 
 ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
-PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}
+PROMPT="╭─${tmux_info}${user_host}${current_dir}${rvm_ruby}${git_branch}${venv_prompt}
 ╰─%B${user_symbol}%b "
 RPROMPT="%B${return_code}%b"
 

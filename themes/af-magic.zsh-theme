@@ -17,17 +17,15 @@ function afmagic_dashes {
   fi
 }
 
-# primary prompt: dashed separator, directory and vcs info
-PS1="${FG[237]}\${(l.\$(afmagic_dashes)..-.)}%{$reset_color%}
-${FG[032]}%~\$(git_prompt_info)\$(hg_prompt_info) ${FG[105]}%(!.#.»)%{$reset_color%} "
-PS2="%{$fg[red]%}\ %{$reset_color%}"
+# primary prompt
+PS1='$FG[239]${(l.$(afmagic_dashes)..-.)}%{$reset_color%}
+$FG[032]$(tmux_id) %~ $(git_prompt_info) $(hg_prompt_info)$FG[105]%(!.#.»)%{$reset_color%} '
+#PS2='%{$fg[red]%}\ %{$reset_color%}'
+RPS1='${return_code}'
 
-# right prompt: return code, virtualenv and context (user@host)
-RPS1="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-if (( $+functions[virtualenv_prompt_info] )); then
-  RPS1+='$(virtualenv_prompt_info)'
-fi
-RPS1+=" ${FG[237]}%n@%m%{$reset_color%}"
+# right prompt
+#(( $+functions[virtualenv_prompt_info] )) && RPS1+='$(virtualenv_prompt_info)'
+#RPS1+=' $my_gray%n@%m%{$reset_color%}%'
 
 # git settings
 ZSH_THEME_GIT_PROMPT_PREFIX=" ${FG[075]}(${FG[078]}"
