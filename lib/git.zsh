@@ -286,6 +286,12 @@ function tmux_id() {
         session_index=$(tmux display-message -p '#S')
         window_index=$(tmux display-message -p '#I')
         window_flag=$(tmux display-message -p '#F')
+        if [[ ${window_flag} == '*' ]]
+        then
+            window_flag=''
+        else
+            window_flag=${window_flag: -1}
+        fi
         echo "[tmux${session_index}-${window_index}${window_flag}]"
     else
         return 0
